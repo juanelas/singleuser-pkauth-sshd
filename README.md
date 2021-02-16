@@ -1,4 +1,4 @@
-# juanelas:single-user-pk-auth-sshd
+# singleuser-pkauth-sshd
 
 This is a docker image of an SSH server thought to be used for TCP forwarding with public key authentication only. It is a single account approach (using the root user). The container is automatically closed if there is not a connected user for 5 seconds or the `CONNECTION_TIMEOUT` environment variable.
 
