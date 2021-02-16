@@ -1,0 +1,11 @@
+PermitRootLogin prohibit-password
+AllowUsers root
+PasswordAuthentication no
+X11Forwarding no
+AllowTcpForwarding yes
+HostKey /opt/sshd/ssh_host_rsa_key
+HostKey /opt/sshd/ssh_host_ecdsa_key
+HostKey /opt/sshd/ssh_host_ed25519_key
+MaxAuthTries 6
+MaxSessions 1
+LogLevel INFO
