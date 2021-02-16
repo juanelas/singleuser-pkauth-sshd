@@ -2,11 +2,11 @@ version: '3.4'
 
 services:
   sshd:
-    build: .
+    build: https://github.com/juanelas/singleuser-pkauth-sshd.git
     image: sshd
     container_name: sshd
     ports:
-      - 0.0.0.0:8022:22/tcp
+      - 8022:22/tcp
     volumes:
       - ./authorized_keys:/authorized_keys
     environment:
