@@ -1,2 +1,3 @@
 authorized_keys
 docker-compose.yaml
+ssh_hello.txt

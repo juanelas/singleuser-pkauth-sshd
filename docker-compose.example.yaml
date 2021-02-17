@@ -9,5 +9,7 @@ services:
       - 8022:22/tcp
     volumes:
       - ./authorized_keys:/authorized_keys
+      - ./ssh_hello.txt:/ssh_hello.txt
     environment:
-      CONNECTION_TIMEOUT: 5
+      CONNECTION_TIMEOUT: 8
+      SSH_HELLO_MSG: 'Yuhuuu'

@@ -1,5 +1,5 @@
 PermitRootLogin prohibit-password
-AllowUsers root
+AllowUsers me
 PasswordAuthentication no
 X11Forwarding no
 AllowTcpForwarding yes
@@ -8,4 +8,7 @@ HostKey /opt/sshd/ssh_host_ecdsa_key
 HostKey /opt/sshd/ssh_host_ed25519_key
 MaxAuthTries 6
 MaxSessions 1
+PrintLastLog no
+AddressFamily inet
 LogLevel INFO
+ForceCommand /usr/local/bin/ssh-welcome.sh
