@@ -10,6 +10,7 @@ services:
     volumes:
       - ./authorized_keys:/authorized_keys
       - ./ssh_hello.txt:/ssh_hello.txt
+      - sshd-keys:/opt/sshd
     environment:
       CONNECTION_TIMEOUT: 8
       SSH_HELLO_MSG: 'Yuhuuu'

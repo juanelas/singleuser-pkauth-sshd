@@ -16,15 +16,22 @@ Build the image with:
 docker build -t sshd https://github.com/juanelas/singleuser-pkauth-sshd.git
 ```
 
-Assuming that the `authorized_keys` file is in your current directory, an example run command forwarding port 8022/tcp in your host would be:
+An example run command could be:
 
 ```terminal
-docker run --name sshd --rm -p 8022:22/tcp -v $(pwd)/authorized_keys:/authorized_keys -e CONNECTION_TIMEOUT=8 -e SSH_HELLO_MSG='Connected' sshd
+docker run --name sshd --rm -p 8022:22/tcp -v $(pwd)/authorized_keys:/authorized_keys -e CONNECTION_TIMEOUT=8 -v sshd-keys:/opt/sshd sshd
 ```
+
+The command it is assuming that:
+
+- you are redirecting your host machine port 8022/tcp to the sshd container
+- you have an `authorized_keys` file in your current directory
+- the connection timeout for the container to be destroyed (if there is not any active connection) is 8 seconds
+- the sshd server keys persist in a named volume called `sshd-keys`
 
 ## Usage with docker-compose
 
-An example `docker-compose.yaml` listening on port 8022/tcp and with a connection timeout of 8 seconds, a hello message template in `ssh_hello.txt`:
+The above example using a `docker-compose.yaml` file would be like follows, although now the connection timeout is 8 seconds, we are providing a ssh hello message template in `ssh_hello.txt` and replacing the string `SSH_HELLO_MSG` in the template with the contents of the environment variable `SSH_HELLO_MSG`.
 
 ```yaml
 version: '3.4'
@@ -39,10 +46,9 @@ services:
     volumes:
       - ./authorized_keys:/authorized_keys
       - ./ssh_hello.txt:/ssh_hello.txt
+      - sshd-keys:/opt/sshd
     environment:
       CONNECTION_TIMEOUT: 8
       SSH_HELLO_MSG: 'Yuhuuu'
 
 ```
-
-And just run `docker-compose up`
