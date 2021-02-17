@@ -14,7 +14,7 @@ Build the image with:
 docker build -t sshd https://github.com/juanelas/singleuser-pkauth-sshd.git
 ```
 
-Assuming thath the `authorized_keys` is in your current directory, an example run command forwarding port 8022/tcp in your host would be:
+Assuming that the `authorized_keys` file is in your current directory, an example run command forwarding port 8022/tcp in your host would be:
 
 ```terminal
 docker run --name sshd --rm -p 8022:22/tcp -v $(pwd)/authorized_keys:/authorized_keys -e CONNECTION_TIMEOUT=8 sshd
