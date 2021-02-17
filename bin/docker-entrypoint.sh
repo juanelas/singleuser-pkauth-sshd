@@ -15,7 +15,7 @@ oid=$(stat -c "%u" /root/.ssh/authorized_keys 2>/dev/null)
 if [ -f /authorized_keys ]; then
     cp /authorized_keys /root/.ssh/authorized_keys
 else
-    echo "You should provide a authorized_keys files and mount it to /authorized_keys"
+    echo "You should provide an authorized_keys file and mount it to /authorized_keys"
     exit 0
 fi
 
